@@ -65,9 +65,9 @@ public class MyClients
         
         try 
         {
-          FileWriter myWriter = new FileWriter("myclients.csv");
+          FileWriter myWriter = new FileWriter("myclients.csv", true);
 
-          myWriter.write(first_name + ',' + last_name + ',' + email);
+          myWriter.write(first_name + ',' + last_name + ',' + email + "\n");
           myWriter.close();
 
           System.out.println("\n\nSuccessfully wrote to the file.\n\n");
