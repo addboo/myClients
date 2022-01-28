@@ -119,7 +119,7 @@ public class MyClients
         
         Scanner in = new Scanner(System.in);
         
-        System.out.print("Eπώνυμο : ");
+        System.out.print("Επώνυμο: ");
         
         String last_name = in.nextLine();
         
@@ -135,10 +135,7 @@ public class MyClients
 
             while((currentLine = reader.readLine()) != null) 
             {
-                // trim newline when comparing with lineToRemove
-                String trimmedLine = currentLine.trim();
-            
-                if(trimmedLine.equals(last_name)) continue;
+                if(currentLine.indexOf(last_name) != -1) continue;
                 writer.write(currentLine + System.getProperty("line.separator"));
             }
         
@@ -149,6 +146,7 @@ public class MyClients
         }
         catch (IOException e) 
         {
+            
         }
      
         System.out.println("\n");
