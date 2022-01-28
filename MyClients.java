@@ -123,28 +123,34 @@ public class MyClients
         
         String last_name = in.nextLine();
         
-        File inputFile = new File("myclients.csv");
-        File tempFile = new File("myclients.temp");
-
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
-
-        String currentLine;
-
-        while((currentLine = reader.readLine()) != null) 
+        try
         {
-            // trim newline when comparing with lineToRemove
-            String trimmedLine = currentLine.trim();
+            File inputFile = new File("myclients.csv");
+            File tempFile = new File("myclients.temp");
+
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+
+            String currentLine;
+
+            while((currentLine = reader.readLine()) != null) 
+            {
+                // trim newline when comparing with lineToRemove
+                String trimmedLine = currentLine.trim();
             
-            if(trimmedLine.equals(last_name)) continue;
-            writer.write(currentLine + System.getProperty("line.separator"));
+                if(trimmedLine.equals(last_name)) continue;
+                writer.write(currentLine + System.getProperty("line.separator"));
+            }
+        
+            writer.close(); 
+            reader.close(); 
+        
+            boolean successful = tempFile.renameTo(inputFile);
         }
-        
-        writer.close(); 
-        reader.close(); 
-        
-        boolean successful = tempFile.renameTo(inputFile);
-        
+        catch (IOException e) 
+        {
+        }
+     
         System.out.println("\n");
     }
 }
