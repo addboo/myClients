@@ -34,7 +34,7 @@ public class MyClients
     
     public static int menu()
     {
-        System.out.println("MENU MyClients v.1");
+        System.out.println("MENU MyClients v.2");
         System.out.println("-------------------------");
         System.out.println("1. Εισαγωγή Πελάτη");
         System.out.println("2. Λίστα Πελατών");
@@ -98,7 +98,22 @@ public class MyClients
             while (myReader.hasNextLine()) 
             {
                 String data = myReader.nextLine();
-                System.out.println(data);
+                
+                String[] split = data.split(",");
+                
+                for(int i = 0; i < split.length; i++)
+                {
+                    System.out.print(split[i]);
+                    
+                    int spaces = 10 - split[i].length();
+                    
+                    for(int k = 0; k < spaces; k++)
+                    {
+                        System.out.print(" ");
+                    }
+                }
+                
+                System.out.println();
             }
       
             myReader.close();
@@ -116,12 +131,11 @@ public class MyClients
     {
         System.out.println("\nΔΙΑΓΡΑΦΗ ΠΕΛΑΤΗ");
         System.out.println("--------------------");
+                
+        System.out.print("E-mail: ");
         
         Scanner in = new Scanner(System.in);
-        
-        System.out.print("Επώνυμο: ");
-        
-        String last_name = in.nextLine();
+        String email = in.nextLine();
         
         try
         {
@@ -135,7 +149,10 @@ public class MyClients
 
             while((currentLine = reader.readLine()) != null) 
             {
-                if(currentLine.indexOf(last_name) != -1) continue;
+                String[] getEmail = currentLine.split(",");
+                
+                if(getEmail[2].contains(email) && !email.isEmpty()) continue;
+                
                 writer.write(currentLine + System.getProperty("line.separator"));
             }
         
